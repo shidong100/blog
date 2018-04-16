@@ -62,91 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-fabric-公式算法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/16/fabric-公式算法/" class="article-date">
-  <time datetime="2018-04-16T12:04:09.000Z" itemprop="datePublished">2018-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/16/fabric-公式算法/">fabric 公式算法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#fabric0.6公式算法#<br>PBFT共识算法</p>
-<p>#fabric1.0共识算法#</p>
-<ol>
-<li>solo实现了中心化共识</li>
-<li>kafka实现了多中心化共识</li>
-<li>PBFT实现去中心化共识(拜占庭容错)</li>
-<li>SBFT（简化拜占庭容错）</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/fabric-公式算法/" data-id="cjg2bnldi0001ckzamy9m4ywg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Java8" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/16/Java8/" class="article-date">
-  <time datetime="2018-04-16T11:26:53.000Z" itemprop="datePublished">2018-04-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/16/Java8/">Java8 10大特性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#1. Lambda表达式和函数式编程#<br><strong>Lambda表达式也称为闭包，他允许我们将函数当作参数传到方法，或者吧代码当作数据处理</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/Java8/" data-id="cjg2bnld70000ckza2wqyivpk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-mongodb-sharding" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/16/mongodb-sharding/" class="article-date">
-  <time datetime="2018-04-16T06:34:47.871Z" itemprop="datePublished">2018-04-16</time>
+  <time datetime="2018-04-16T14:34:39.131Z" itemprop="datePublished">2018-04-16</time>
 </a>
     
   </div>
@@ -155,7 +74,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###MongoDB分片配置###</p>
+        <p>title: MongoDB分片搭建<br>date: 2018-04-16 19:26:53<br>tags: 1111</p>
+<p>###MongoDB分片配置###</p>
 <p>##mongo sharding环境配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mongodb3.4/</span><br><span class="line">mkdir -p data/mongos/logs</span><br><span class="line">mkdir -p data/mongos/db</span><br><span class="line">mkdir -p data/config/logs</span><br><span class="line">mkdir -p data/config/db</span><br><span class="line">mkdir -p data/shard/s1/logs</span><br><span class="line">mkdir -p data/shard/s1/db</span><br><span class="line">mkdir -p data/shard/s2/logs</span><br><span class="line">mkdir -p data/shard/s2/db</span><br><span class="line">mkdir -p data/shard/s3/logs</span><br><span class="line">mkdir -p data/shard/s3/db</span><br></pre></td></tr></table></figure></p>
 <p>####config服务器配置文件 config.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">port = 29000</span><br><span class="line">dbpath=/usr/local/mongodb3.4/data/config/db</span><br><span class="line">logpath = /usr/local/mongodb3.4/data/config/db/config.log #日志文件</span><br><span class="line">logappend = true #使用追加的方式写日志</span><br><span class="line">pidfilepath = /usr/local/mongodb3.4/data/config/config.pid</span><br><span class="line">nohttpinterface = true #关闭http接口，默认关闭27018端口访问</span><br><span class="line">fork = true #以守护进程的方式运行MongoDB，创建服务器进程</span><br><span class="line">oplogSize = 4096 #复制操作指定的最大大小（以兆字节为单位）日志</span><br><span class="line">engine = wiredTiger</span><br><span class="line">cacheSizeGB = 38G</span><br><span class="line">smallfiles=true</span><br><span class="line">configsvr = true</span><br><span class="line">journal = true</span><br></pre></td></tr></table></figure></p>
 <p>####shard1服务器配置文件 shard1.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">port = 27001</span><br><span class="line">dbpath = /usr/local/mongodb3.4/data/shard/s1/db</span><br><span class="line">logpath = /usr/local/mongodb3.4/data/shard/s1/logs/shard.log #日志文件</span><br><span class="line">logappend = true #使用追加的方式写日志</span><br><span class="line">pidfilepath = /usr/local/mongodb3.4/data/shard/s1/shard1.pid</span><br><span class="line">nohttpinterface = true #关闭http接口，默认关闭27018端口访问</span><br><span class="line">fork = true #以守护进程的方式运行MongoDB，创建服务器进程</span><br><span class="line">oplogSize = 4096 #复制操作指定的最大大小（以兆字节为单位）日志</span><br><span class="line">journal = true</span><br><span class="line">engine = wiredTiger</span><br><span class="line">cacheSizeGB = 38G</span><br><span class="line">smallfiles=true</span><br><span class="line">shardsvr=true</span><br><span class="line">replSet=shard1</span><br></pre></td></tr></table></figure></p>
@@ -208,7 +128,88 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/mongodb-sharding/" data-id="cjg2bnle00003ckza31b6yl74" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/mongodb-sharding/" data-id="cjg2bt1t50004fxzai83rknp4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-fabric-公式算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/16/fabric-公式算法/" class="article-date">
+  <time datetime="2018-04-16T12:04:09.000Z" itemprop="datePublished">2018-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/16/fabric-公式算法/">fabric 公式算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#fabric0.6公式算法#<br>PBFT共识算法</p>
+<p>#fabric1.0共识算法#</p>
+<ol>
+<li>solo实现了中心化共识</li>
+<li>kafka实现了多中心化共识</li>
+<li>PBFT实现去中心化共识(拜占庭容错)</li>
+<li>SBFT（简化拜占庭容错）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/16/fabric-公式算法/" data-id="cjg2bt1sg0001fxzaa9tw24c9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/16/Java8/" class="article-date">
+  <time datetime="2018-04-16T11:26:53.000Z" itemprop="datePublished">2018-04-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/16/Java8/">Java8 10大特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#1. Lambda表达式和函数式编程#<br><strong>Lambda表达式也称为闭包，他允许我们将函数当作参数传到方法，或者吧代码当作数据处理</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/16/Java8/" data-id="cjg2bt1s30000fxzafhskoczt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -248,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/redis/" data-id="cjg2bnle50004ckzaytzbxmn4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/redis/" data-id="cjg2bt1tf0005fxzatdea9fa3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -284,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/git-server/" data-id="cjg2bnldw0002ckzad5ecdra1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/git-server/" data-id="cjg2bt1ss0002fxzagh2ag0yv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -393,7 +394,7 @@
 <h2 id="关于收费"><a href="#关于收费" class="headerlink" title="关于收费"></a>关于收费</h2><p><strong>马克飞象</strong>为新用户提供 10 天的试用期，试用期过后需要<a href="maxiang.info/vip.html">续费</a>才能继续使用。未购买或者未及时续费，将不能同步新的笔记。之前保存过的笔记依然可以编辑。</p>
 <h2 id="反馈与建议"><a href="#反馈与建议" class="headerlink" title="反馈与建议"></a>反馈与建议</h2><ul>
 <li>微博：<a href="http://weibo.com/u/2788354117" target="_blank" rel="noopener">@马克飞象</a>，<a href="http://weibo.com/ggock" title="开发者个人账号" target="_blank" rel="noopener">@GGock</a></li>
-<li>邮箱：<a href="mailto:&#x68;&#x75;&#115;&#x74;&#x67;&#111;&#x63;&#107;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;" target="_blank" rel="noopener">&#x68;&#x75;&#115;&#x74;&#x67;&#111;&#x63;&#107;&#x40;&#x67;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#111;&#x6d;</a></li>
+<li>邮箱：<a href="mailto:&#x68;&#117;&#115;&#x74;&#x67;&#111;&#x63;&#x6b;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x68;&#117;&#115;&#x74;&#x67;&#111;&#x63;&#x6b;&#x40;&#x67;&#109;&#97;&#105;&#108;&#x2e;&#99;&#111;&#x6d;</a></li>
 </ul>
 <hr>
 <p>感谢阅读这份帮助文档。请点击右上角，绑定印象笔记账号，开启全新的记录与分享体验吧。</p>
@@ -433,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/jappa-blog/" data-id="cjg2bnlfb0005ckzajg07nobt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/jappa-blog/" data-id="cjg2bt1sx0003fxza0h9hgqjf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -474,15 +475,15 @@
       <ul>
         
           <li>
+            <a href="/2018/04/16/mongodb-sharding/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2018/04/16/fabric-公式算法/">fabric 公式算法</a>
           </li>
         
           <li>
             <a href="/2018/04/16/Java8/">Java8 10大特性</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/16/mongodb-sharding/">(no title)</a>
           </li>
         
           <li>

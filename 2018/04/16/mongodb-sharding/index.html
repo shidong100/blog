@@ -7,17 +7,17 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###MongoDB分片配置### ##mongo sharding环境配置1234567891011cd /usr/local/mongodb3.4/mkdir -p data/mongos/logsmkdir -p data/mongos/dbmkdir -p data/config/logsmkdir -p data/config/dbmkdir -p data/shard/s1/logsm">
+  <meta name="description" content="title: MongoDB分片搭建date: 2018-04-16 19:26:53tags: 1111 ###MongoDB分片配置### ##mongo sharding环境配置1234567891011cd /usr/local/mongodb3.4/mkdir -p data/mongos/logsmkdir -p data/mongos/dbmkdir -p data/config/l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2018/04/16/mongodb-sharding/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="###MongoDB分片配置### ##mongo sharding环境配置1234567891011cd /usr/local/mongodb3.4/mkdir -p data/mongos/logsmkdir -p data/mongos/dbmkdir -p data/config/logsmkdir -p data/config/dbmkdir -p data/shard/s1/logsm">
+<meta property="og:description" content="title: MongoDB分片搭建date: 2018-04-16 19:26:53tags: 1111 ###MongoDB分片配置### ##mongo sharding环境配置1234567891011cd /usr/local/mongodb3.4/mkdir -p data/mongos/logsmkdir -p data/mongos/dbmkdir -p data/config/l">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-16T06:34:47.871Z">
+<meta property="og:updated_time" content="2018-04-16T14:34:39.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="###MongoDB分片配置### ##mongo sharding环境配置1234567891011cd /usr/local/mongodb3.4/mkdir -p data/mongos/logsmkdir -p data/mongos/dbmkdir -p data/config/logsmkdir -p data/config/dbmkdir -p data/shard/s1/logsm">
+<meta name="twitter:description" content="title: MongoDB分片搭建date: 2018-04-16 19:26:53tags: 1111 ###MongoDB分片配置### ##mongo sharding环境配置1234567891011cd /usr/local/mongodb3.4/mkdir -p data/mongos/logsmkdir -p data/mongos/dbmkdir -p data/config/l">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-mongodb-sharding" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/16/mongodb-sharding/" class="article-date">
-  <time datetime="2018-04-16T06:34:47.871Z" itemprop="datePublished">2018-04-16</time>
+  <time datetime="2018-04-16T14:34:39.131Z" itemprop="datePublished">2018-04-16</time>
 </a>
     
   </div>
@@ -76,7 +76,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###MongoDB分片配置###</p>
+        <p>title: MongoDB分片搭建<br>date: 2018-04-16 19:26:53<br>tags: 1111</p>
+<p>###MongoDB分片配置###</p>
 <p>##mongo sharding环境配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mongodb3.4/</span><br><span class="line">mkdir -p data/mongos/logs</span><br><span class="line">mkdir -p data/mongos/db</span><br><span class="line">mkdir -p data/config/logs</span><br><span class="line">mkdir -p data/config/db</span><br><span class="line">mkdir -p data/shard/s1/logs</span><br><span class="line">mkdir -p data/shard/s1/db</span><br><span class="line">mkdir -p data/shard/s2/logs</span><br><span class="line">mkdir -p data/shard/s2/db</span><br><span class="line">mkdir -p data/shard/s3/logs</span><br><span class="line">mkdir -p data/shard/s3/db</span><br></pre></td></tr></table></figure></p>
 <p>####config服务器配置文件 config.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">port = 29000</span><br><span class="line">dbpath=/usr/local/mongodb3.4/data/config/db</span><br><span class="line">logpath = /usr/local/mongodb3.4/data/config/db/config.log #日志文件</span><br><span class="line">logappend = true #使用追加的方式写日志</span><br><span class="line">pidfilepath = /usr/local/mongodb3.4/data/config/config.pid</span><br><span class="line">nohttpinterface = true #关闭http接口，默认关闭27018端口访问</span><br><span class="line">fork = true #以守护进程的方式运行MongoDB，创建服务器进程</span><br><span class="line">oplogSize = 4096 #复制操作指定的最大大小（以兆字节为单位）日志</span><br><span class="line">engine = wiredTiger</span><br><span class="line">cacheSizeGB = 38G</span><br><span class="line">smallfiles=true</span><br><span class="line">configsvr = true</span><br><span class="line">journal = true</span><br></pre></td></tr></table></figure></p>
 <p>####shard1服务器配置文件 shard1.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">port = 27001</span><br><span class="line">dbpath = /usr/local/mongodb3.4/data/shard/s1/db</span><br><span class="line">logpath = /usr/local/mongodb3.4/data/shard/s1/logs/shard.log #日志文件</span><br><span class="line">logappend = true #使用追加的方式写日志</span><br><span class="line">pidfilepath = /usr/local/mongodb3.4/data/shard/s1/shard1.pid</span><br><span class="line">nohttpinterface = true #关闭http接口，默认关闭27018端口访问</span><br><span class="line">fork = true #以守护进程的方式运行MongoDB，创建服务器进程</span><br><span class="line">oplogSize = 4096 #复制操作指定的最大大小（以兆字节为单位）日志</span><br><span class="line">journal = true</span><br><span class="line">engine = wiredTiger</span><br><span class="line">cacheSizeGB = 38G</span><br><span class="line">smallfiles=true</span><br><span class="line">shardsvr=true</span><br><span class="line">replSet=shard1</span><br></pre></td></tr></table></figure></p>
@@ -129,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/mongodb-sharding/" data-id="cjg2bnle00003ckza31b6yl74" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/mongodb-sharding/" data-id="cjg2bt1t50004fxzai83rknp4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,19 +139,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/16/Java8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Java8 10大特性
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/16/redis/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/04/16/fabric-公式算法/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">redis常见问题</div>
+      <div class="article-nav-title">fabric 公式算法</div>
     </a>
   
 </nav>
@@ -187,15 +179,15 @@
       <ul>
         
           <li>
+            <a href="/2018/04/16/mongodb-sharding/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2018/04/16/fabric-公式算法/">fabric 公式算法</a>
           </li>
         
           <li>
             <a href="/2018/04/16/Java8/">Java8 10大特性</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/16/mongodb-sharding/">(no title)</a>
           </li>
         
           <li>
