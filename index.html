@@ -62,6 +62,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-采坑记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/17/采坑记/" class="article-date">
+  <time datetime="2018-04-17T09:43:33.000Z" itemprop="datePublished">2018-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/采坑记/">采坑记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>kafka整合flume导致partition数据不均匀问题</em><br>发送kafka partition上面的数据不均匀，每次发送时，只往一个partition上面发,并没有同时往多个partition上面发。<br>查了资料，说是发送消息时不指定key将会随机发，但事实上，并没有。<br>这时，自己用python带的kafka python库直接发送测试，数据是均匀的。说明kafka集群是没问题的。这时候问题出在 kafka sink端。</p>
+<p>下载官方源码找到KafkaSink.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static final String KEY_HDR = &quot;key&quot;;</span><br><span class="line"></span><br><span class="line">eventKey = headers.get(KEY_HDR);</span><br><span class="line">KeyedMessage&lt;String, byte[]&gt; data = new KeyedMessage&lt;String, byte[]&gt;</span><br><span class="line">          (eventTopic, eventKey, eventBody);</span><br><span class="line">messageList.add(data);</span><br></pre></td></tr></table></figure></p>
+<p>说明key是从event中拿到的，我们只需要在event中构造一个包含key为 key 的header 键值对就能达到目的。<br>事情到了这里，似乎只要搞定event中加key就可以搞定了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/17/采坑记/" data-id="cjg3hqw3a0006r3zazv2x0dnz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-分布式一致性问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/17/分布式一致性问题/" class="article-date">
+  <time datetime="2018-04-17T08:37:23.000Z" itemprop="datePublished">2018-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/17/分布式一致性问题/">分布式一致性问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#出现的场景#</p>
+<p>##先写缓存，再写数据库## 这种方式不推荐使用</p>
+<p>##先写数据库，再写缓存##<br>假如写数据库成功，但写缓存失败，则下次读取（并发读）缓存时，则读不到数据<br><code>解决办法: 
+（1）根据写入缓存的响应来进行判断，如果缓存写入失败，则回滚数据库操作；此种方法增加了程序的复杂度，不建议采用；
+（2）缓存使用时，假如读缓存失败，先读数据库，再回写缓存的方式实现</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/04/17/分布式一致性问题/" data-id="cjg3hqw3t0008r3zakjuftv6l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-fabric-公式算法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/04/16/fabric-公式算法/" class="article-date">
@@ -96,7 +176,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/fabric-公式算法/" data-id="cjg2cf90r0001i4zahixgood4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/fabric-公式算法/" data-id="cjg3hqw2d0001r3zaeavp01o1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -133,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/Java8/" data-id="cjg2cf9040000i4zancmcysqj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/Java8/" data-id="cjg3hqw200000r3zarf0nrpvv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -218,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/mongodb-sharding/" data-id="cjg2cf9160003i4za820tmp25" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/mongodb-sharding/" data-id="cjg3hqw360005r3zanmypwwp2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/1111/">1111</a></li></ul>
@@ -260,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/16/redis/" data-id="cjg2cf91u0006i4zajmmwva2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/16/redis/" data-id="cjg3hqw2x0004r3za7sdme2he" class="article-share-link">Share</a>
       
       
     </footer>
@@ -296,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/git-server/" data-id="cjg2cf9130002i4za6jxykvd0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/git-server/" data-id="cjg3hqw2p0002r3zadwemuz48" class="article-share-link">Share</a>
       
       
     </footer>
@@ -405,7 +485,7 @@
 <h2 id="关于收费"><a href="#关于收费" class="headerlink" title="关于收费"></a>关于收费</h2><p><strong>马克飞象</strong>为新用户提供 10 天的试用期，试用期过后需要<a href="maxiang.info/vip.html">续费</a>才能继续使用。未购买或者未及时续费，将不能同步新的笔记。之前保存过的笔记依然可以编辑。</p>
 <h2 id="反馈与建议"><a href="#反馈与建议" class="headerlink" title="反馈与建议"></a>反馈与建议</h2><ul>
 <li>微博：<a href="http://weibo.com/u/2788354117" target="_blank" rel="noopener">@马克飞象</a>，<a href="http://weibo.com/ggock" title="开发者个人账号" target="_blank" rel="noopener">@GGock</a></li>
-<li>邮箱：<a href="mailto:&#104;&#x75;&#x73;&#x74;&#103;&#x6f;&#99;&#107;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#104;&#x75;&#x73;&#x74;&#103;&#x6f;&#99;&#107;&#64;&#x67;&#109;&#97;&#105;&#108;&#46;&#99;&#x6f;&#x6d;</a></li>
+<li>邮箱：<a href="mailto:&#x68;&#x75;&#x73;&#116;&#103;&#111;&#x63;&#x6b;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;" target="_blank" rel="noopener">&#x68;&#x75;&#x73;&#116;&#103;&#111;&#x63;&#x6b;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></li>
 </ul>
 <hr>
 <p>感谢阅读这份帮助文档。请点击右上角，绑定印象笔记账号，开启全新的记录与分享体验吧。</p>
@@ -445,7 +525,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/jappa-blog/" data-id="cjg2cf91a0004i4zad3nu37e7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/15/jappa-blog/" data-id="cjg3hqw2t0003r3zaue3rjkb1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -500,6 +580,14 @@
       <ul>
         
           <li>
+            <a href="/2018/04/17/采坑记/">采坑记</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/17/分布式一致性问题/">分布式一致性问题</a>
+          </li>
+        
+          <li>
             <a href="/2018/04/16/fabric-公式算法/">fabric 公式算法</a>
           </li>
         
@@ -509,14 +597,6 @@
         
           <li>
             <a href="/2018/04/16/mongodb-sharding/">MongoDB分片搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/16/redis/">redis常见问题</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/15/git-server/">Centos7搭建git服务器</a>
           </li>
         
       </ul>

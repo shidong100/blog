@@ -5,16 +5,19 @@
   
 
   
-  <title>Centos7搭建git服务器 | Hexo</title>
+  <title>分布式一致性问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Centos7搭建git服务器">
-<meta property="og:url" content="http://yoursite.com/2018/04/15/git-server/index.html">
+  <meta name="description" content="#出现的场景# ##先写缓存，再写数据库## 这种方式不推荐使用 ##先写数据库，再写缓存##假如写数据库成功，但写缓存失败，则下次读取（并发读）缓存时，则读不到数据解决办法:  （1）根据写入缓存的响应来进行判断，如果缓存写入失败，则回滚数据库操作；此种方法增加了程序的复杂度，不建议采用； （2）缓存使用时，假如读缓存失败，先读数据库，再回写缓存的方式实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式一致性问题">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/分布式一致性问题/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#出现的场景# ##先写缓存，再写数据库## 这种方式不推荐使用 ##先写数据库，再写缓存##假如写数据库成功，但写缓存失败，则下次读取（并发读）缓存时，则读不到数据解决办法:  （1）根据写入缓存的响应来进行判断，如果缓存写入失败，则回滚数据库操作；此种方法增加了程序的复杂度，不建议采用； （2）缓存使用时，假如读缓存失败，先读数据库，再回写缓存的方式实现">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-16T06:34:47.872Z">
+<meta property="og:updated_time" content="2018-04-17T09:43:19.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Centos7搭建git服务器">
+<meta name="twitter:title" content="分布式一致性问题">
+<meta name="twitter:description" content="#出现的场景# ##先写缓存，再写数据库## 这种方式不推荐使用 ##先写数据库，再写缓存##假如写数据库成功，但写缓存失败，则下次读取（并发读）缓存时，则读不到数据解决办法:  （1）根据写入缓存的响应来进行判断，如果缓存写入失败，则回滚数据库操作；此种方法增加了程序的复杂度，不建议采用； （2）缓存使用时，假如读缓存失败，先读数据库，再回写缓存的方式实现">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -61,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-git-server" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-分布式一致性问题" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/15/git-server/" class="article-date">
-  <time datetime="2018-04-15T11:00:52.000Z" itemprop="datePublished">2018-04-15</time>
+    <a href="/2018/04/17/分布式一致性问题/" class="article-date">
+  <time datetime="2018-04-17T08:37:23.000Z" itemprop="datePublished">2018-04-17</time>
 </a>
     
   </div>
@@ -75,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Centos7搭建git服务器
+      分布式一致性问题
     </h1>
   
 
@@ -83,11 +86,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>#出现的场景#</p>
+<p>##先写缓存，再写数据库## 这种方式不推荐使用</p>
+<p>##先写数据库，再写缓存##<br>假如写数据库成功，但写缓存失败，则下次读取（并发读）缓存时，则读不到数据<br><code>解决办法: 
+（1）根据写入缓存的响应来进行判断，如果缓存写入失败，则回滚数据库操作；此种方法增加了程序的复杂度，不建议采用；
+（2）缓存使用时，假如读缓存失败，先读数据库，再回写缓存的方式实现</code></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/15/git-server/" data-id="cjg3hqw2p0002r3zadwemuz48" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/17/分布式一致性问题/" data-id="cjg3hqw3t0008r3zakjuftv6l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -96,19 +104,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/04/16/redis/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/17/采坑记/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          redis常见问题
+          采坑记
         
       </div>
     </a>
   
   
-    <a href="/2018/04/15/jappa-blog/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/04/16/fabric-公式算法/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">jappa blog</div>
+      <div class="article-nav-title">fabric 公式算法</div>
     </a>
   
 </nav>
